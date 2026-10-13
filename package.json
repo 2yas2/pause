@@ -1,0 +1,26 @@
+{
+  "name": "pause-stream",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Pause. — plateforme de streaming d'anime auto-hébergée",
+  "type": "module",
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "dev": "npm run build:client && concurrently -k -n server,client -c yellow,cyan \"tsx watch src/server/index.ts\" \"tsc -p tsconfig.client.json --watch --preserveWatchOutput\"",
+    "build": "tsc -p tsconfig.client.json && tsc -p tsconfig.server.json",
+    "build:client": "tsc -p tsconfig.client.json",
+    "start": "node dist/server/index.js",
+    "scan": "tsx src/server/cli-scan.ts",
+    "demo": "tsx scripts/demo.ts",
+    "typecheck": "tsc -p tsconfig.client.json --noEmit && tsc -p tsconfig.server.json --noEmit",
+    "test": "node --import tsx --test tests/*.test.ts"
+  },
+  "devDependencies": {
+    "@types/node": "^22.20.5",
+    "concurrently": "^10.0.6",
+    "tsx": "^4.23.15",
+    "typescript": "^5.9.3"
+  }
+}
